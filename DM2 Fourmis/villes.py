@@ -36,11 +36,11 @@ def distance(point1, point2):
     dist = sqrt( (point1[0]-point2[0])**2 + (point1[1]-point2[1])**2)
     return dist
 
-def matrice_des_distance(tableau_villes):
-    matrice = []
+def matrice_des_distances(tableau_villes):
+    matrice = [[0] * len(tableau_villes) for i in range(len(tableau_villes))]
     for i in range(len(tableau_villes)):
         for j in range(len(tableau_villes)):
-            matrice.append(distance(tableau_villes[i],tableau_villes[j]))
+            matrice[i][j] = (distance(tableau_villes[i],tableau_villes[j]))
     return matrice
 
 def longueur(matrice,chemin):
@@ -54,7 +54,7 @@ def longueur(matrice,chemin):
             v2 = chemin[i+1]
         longueur_totale += distance(matrice[v1],matrice[v2])
     return longueur_totale
-"""
+
 a = villes_aleatoires(4)
 print(a)
 chemin = chemin_aleatoire(a)
@@ -62,7 +62,6 @@ print(chemin)
 b = (2,3)
 c = (1,4)
 print(distance(b,c))
-print(matrice_des_distance(a))
-print(len(matrice_des_distance(a)))
+print("matrice=",matrice_des_distances(a))
+print("taille=",len(matrice_des_distances(a)))
 print(longueur(a,chemin))
-"""

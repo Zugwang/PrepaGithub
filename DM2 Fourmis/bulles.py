@@ -11,4 +11,4 @@ def tri_bulle(tableau):
     return tableau
 
 b = [6,5,4,3,2,1]
-print(tri_bulle(b))
+#print(tri_bulle(b))
