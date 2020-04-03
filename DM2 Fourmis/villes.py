@@ -52,16 +52,16 @@ def longueur(matrice,chemin):
         else:
             v1 = chemin[i]
             v2 = chemin[i+1]
-        longueur_totale += distance(matrice[v1],matrice[v2])
+        longueur_totale += matrice[v1][v2]
     return longueur_totale
 
+"""
 a = villes_aleatoires(4)
+b = matrice_des_distances(a)
 print(a)
 chemin = chemin_aleatoire(a)
 print(chemin)
-b = (2,3)
-c = (1,4)
-print(distance(b,c))
 print("matrice=",matrice_des_distances(a))
 print("taille=",len(matrice_des_distances(a)))
-print(longueur(a,chemin))
+print(longueur(b,chemin))
+"""

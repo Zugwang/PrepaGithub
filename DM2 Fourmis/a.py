@@ -1,4 +1,8 @@
-a = [[0] * 4 for i in range(3)]
+a = 2 ** 64
+b = None
+c = False
 
-a[1].append(4)
+print(bin(a))
 print(a)
+print(bin(c))
+print(hex(b))

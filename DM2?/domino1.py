@@ -1,7 +1,7 @@
 from random import randrange
 
 
-def point_domino(domino):
+def somme_domino(domino):
     somme = domino[0] + domino[1]
     return somme
 
@@ -9,9 +9,9 @@ def inverse_domino(domino):
     v = (domino[1], domino[0])
     return v
 
-def generation_ensemble_domino():
+def generation_ensemble_domino(rang):
     domino = []
-    for i in range(6):
+    for i in range(rang):
         for j in range(i+1):
             domino.append((i+1,j+1))
             #print(i+1,j+1)
@@ -32,8 +32,8 @@ def trouver_domino_max(ensemble_domino):
     max = 0
     maxi = 0
     for i in range(len(ensemble_domino)):
-        if point_domino(ensemble_domino[i]) > max:
-            max = point_domino(ensemble_domino[i])
+        if somme_domino(ensemble_domino[i]) >= max:
+            max = somme_domino(ensemble_domino[i])
             maxi = i
     return i
 
@@ -67,17 +67,41 @@ def pioche_domino(ensemble_domino,nombre_domino):
         supprimer_domino_ensemble(ensemble_domino,i)
     return v
 
-def nouvelle_partie()
+def nouvelle_partie(rang_domino,nombre_joueur):
+
+    if ( (rang_domino)*(rang_domino) ) + 2 / 2 < (nombre_joueur*3) :
+        print("Pas assez de domino, augmenter le rang")
+        return []
+
+    pioche = generation_ensemble_domino(rang_domino)
+    train = pioche_domino(pioche,1)
+    etat = [-1,train,pioche]
+    somme_max_domino = 0
+    maxj = 0
+    for j in range(3,nombre_joueur+3):
+        etat.append(pioche_domino(pioche,3))
+        if somme_domino( etat[j][trouver_domino_max(etat[j]) ]) >= somme_max_domino:
+            somme_max_domino = somme_domino(etat[j][trouver_domino_max(etat[j])])
+            maxj = j - 2
+        print(somme_max_domino)
+    etat[0] = maxj
+    return etat
 
 
 
 u = (3,2)
-print(inverse_domino(u))
-a = generation_ensemble_domino()
-print(trouver_domino((6,5),a))
-print(accoller_domino(a,3))
+#print(inverse_domino(u))
+a = generation_ensemble_domino(6)
+#print(trouver_domino((6,5),a))
+#print(accoller_domino(a,3))
 e = [ (1,2), (2,5), (3,5), (3,3), (3,42) ]
+f = nouvelle_partie(5,2)
 
-print(e)
-print(pioche_domino(e,2))
-print(e)
+print(f[0])
+print(f[1])
+print(f[2])
+print("J1 = ",f[3])
+print("J2 = ",f[4])
+#print(e)
+#print(pioche_domino(e,2))
+#print(e)
